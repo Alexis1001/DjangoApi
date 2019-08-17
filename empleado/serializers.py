@@ -2,12 +2,7 @@ from rest_framework import routers, serializers, viewsets
 from empleado.models import Negocio
 from empleado.models import Empleado
 
-class EmpleadoSerializer(serializers.ModelSerializer):
-    negocio = serializers.ReadOnlyField(source='negocio.name')
-    class Meta:
-        model = Empleado
-        fields = ('__all__')
-
+#usuario
 class NegocioSerializer(serializers.ModelSerializer):
     empleados = serializers.SlugRelatedField(
         many=True,
@@ -17,3 +12,11 @@ class NegocioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Negocio
         fields = ('name','empleados')
+
+#denuncia
+class EmpleadoSerializer(serializers.ModelSerializer):
+    negocio = serializers.ReadOnlyField(source='negocio.name')
+    class Meta:
+        model = Empleado
+        fields = ('__all__')
+
